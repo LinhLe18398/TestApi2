@@ -3,6 +3,8 @@ package com.example.testapi2.service;
 import com.example.testapi2.model.Staff;
 import com.example.testapi2.repository.IStaffRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,8 +26,8 @@ public class StaffService implements IStaffService {
     }
 
     @Override
-    public List<Staff> findAll() {
-        return iStaffRepo.findAll();
+    public Page<Staff> findAll(Pageable pageable) {
+        return iStaffRepo.findAll(pageable);
     }
 
     @Override

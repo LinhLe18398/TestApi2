@@ -4,6 +4,8 @@ import com.example.testapi2.model.Staff;
 import com.example.testapi2.repository.IStaffRepo;
 import com.example.testapi2.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +22,8 @@ public class StaffController {
     private IStaffRepo iStaffRepo;
 
     @GetMapping("")
-    public ResponseEntity<List<Staff>> findAll() {
-        List<Staff> list = staffService.findAll();
+    public ResponseEntity<Page<Staff>> findAll(Pageable pageable) {
+        Page<Staff> list = staffService.findAll(pageable);
         if (list.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
